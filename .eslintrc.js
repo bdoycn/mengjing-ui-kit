@@ -5,5 +5,8 @@ module.exports = {
   ],
   parserOptions: {
     parser: 'babel-eslint',
-  }
+  },
+  rules: {
+    'no-unused-vars': ['error', { argsIgnorePattern: '^h$' }]
+  },
 }

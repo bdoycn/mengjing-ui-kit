@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
-    "lint": "vue-cli-service lint",
+    "lint": "eslint --ext .vue,.js,.jsx,.ts,.tsx --fix .",
+    "build-storybook": "build-storybook",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:custom": "cross-env NODE_ENV=production uniapp-cli custom",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
@@ -35,13 +36,12 @@
     "dev:quickapp-webview-union": "cross-env NODE_ENV=development UNI_PLATFORM=quickapp-webview-union vue-cli-service uni-build --watch",
     "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js",
     "serve:quickapp-native": "node node_modules/@dcloudio/uni-quickapp-native/bin/serve.js",
+    "storybook": "start-storybook -p 6006",
     "test:android": "cross-env UNI_PLATFORM=app-plus UNI_OS_NAME=android jest -i",
     "test:h5": "cross-env UNI_PLATFORM=h5 jest -i",
     "test:ios": "cross-env UNI_PLATFORM=app-plus UNI_OS_NAME=ios jest -i",
     "test:mp-baidu": "cross-env UNI_PLATFORM=mp-baidu jest -i",
-    "test:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin jest -i",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin jest -i"
   },
   "dependencies": {
     "@dcloudio/uni-app-plus": "^2.0.0-27920200618002",
@@ -57,14 +57,17 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.0-27920200618002",
     "@dcloudio/uni-stat": "^2.0.0-27920200618002",
     "@mengjing/stylelint-config": "^1.0.0",
+    "@storybook/preset-typescript": "^3.0.0",
     "@vue/babel-preset-app": "^4.4.6",
     "@vue/composition-api": "^1.0.0-beta.7",
     "ahooks-composition-api-uni": "^0.1.4",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
+    "fork-ts-checker-webpack-plugin": "^5.0.14",
     "lodash-es": "^4.17.15",
     "regenerator-runtime": "^0.12.1",
     "stylelint-scss": "^3.18.0",
+    "ts-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vuex": "^3.2.0"
   },
@@ -86,9 +89,13 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/vue": "^5.3.19",
     "@types/lodash-es": "^4.17.3",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-typescript": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
     "@wemake-services/stylelint-config-scss": "^0.4.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -108,6 +115,7 @@
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-order": "^4.1.0",
+    "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
@@ -116,7 +124,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "eslint --fix ."
+      "pre-commit": "npm run lint"
     }
   },
   "uni-app": {

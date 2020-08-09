@@ -1,5 +1,5 @@
-export default {
-  name: 'my-button',
+const MyButton = {
+  name: 'MyButton',
 
   data() {
     return {
@@ -15,15 +15,17 @@ export default {
     }
   },
 
-  template: `
-    <button :style="buttonStyles" @click="onClick">
-      <slot></slot>
-    </button>
-  `,
-
   methods: {
     onClick() {
       this.$emit('click')
     },
   },
+
+  template: `
+    <button :style="buttonStyles" @click="onClick">
+      <slot></slot>
+    </button>
+  `,
 }
+
+export default MyButton

@@ -57,6 +57,7 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.0-27920200618002",
     "@dcloudio/uni-stat": "^2.0.0-27920200618002",
     "@mengjing/stylelint-config": "^1.0.0",
+    "@vue/babel-preset-app": "^4.4.6",
     "@vue/composition-api": "^1.0.0-beta.7",
     "ahooks-composition-api-uni": "^0.1.4",
     "core-js": "^3.6.5",

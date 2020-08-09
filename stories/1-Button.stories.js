@@ -16,7 +16,7 @@ export const Text = () => ({
 
 export const Jsx = () => ({
   components: { MyButton },
-  render() {
+  render(h) {
     return <my-button onClick={this.action}>With JSX</my-button>
   },
   methods: { action: linkTo('clicked') },
